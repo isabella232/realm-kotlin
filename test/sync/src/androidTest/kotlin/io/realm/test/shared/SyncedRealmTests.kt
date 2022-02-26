@@ -125,6 +125,9 @@ class SyncedRealmTests {
 
         val channel = Channel<ResultsChange<ChildPk>>(1)
 
+        // This query has caused trouble on CI
+        assertEquals(0, realm1.query<ChildPk>().find().size, realm1.toString())
+
         runBlocking {
             val observer = async {
                 realm2.query<ChildPk>()
